@@ -24,7 +24,8 @@ const FilteredArticles: React.FC<FilteredArticlesProps> = ({ term }) => {
     ).then((res) => res.json())
   );
 
-  if (isLoading) return <LinearProgress sx={progessStyles} />;
+  if (isLoading || filteredHeadlines?.status == "error")
+    return <LinearProgress sx={progessStyles} />;
 
   return (
     <Grid container spacing={containerSpacing}>

@@ -24,7 +24,7 @@ const Articles: React.FC<ArticlesProps> = ({}) => {
     data: headlines,
     // isError,
     isLoading,
-  } = useQuery<{ articles: DetailPropType[] }, Error>(
+  } = useQuery<{ status: "ok" | "error"; articles: DetailPropType[] }, Error>(
     ["headlines", country],
     () =>
       fetch(
@@ -34,7 +34,8 @@ const Articles: React.FC<ArticlesProps> = ({}) => {
       ).then((res) => res.json())
   );
 
-  if (isLoading) return <LinearProgress sx={progessStyles} />;
+  if (isLoading || headlines?.status == "error")
+    return <LinearProgress sx={progessStyles} />;
 
   return (
     <Grid container spacing={containerSpacing}>
