@@ -1,0 +1,1 @@
+export const appStyles = { marginTop: "64px", paddingBottom: "3rem" }
